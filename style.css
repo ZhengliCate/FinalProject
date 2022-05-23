@@ -5,4 +5,6 @@ html, body {
   canvas {
     display: block;
   }
-  
+  #tooltip{
+    position: absolute;
+  }

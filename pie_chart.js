@@ -1,3 +1,7 @@
+var margin = { top: 10, right: 30, bottom: 30, left: 40 },
+    width = 700 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+radius = Math.min(width, height) / 2;
 
 
 d3.json("sales_by_platform.json", (dr) => {
@@ -10,11 +14,7 @@ d3.json("sales_by_platform.json", (dr) => {
     }
     console.log(data);
 
-    var width = 960,
-        height = 500,
-        radius = Math.min(width, height) / 2;
-
-    var color = d3.scaleOrdinal().range(["#98abc5", "#8a89a6", "#7b6888"]);
+    var color = d3.scaleOrdinal().range(["#f9f0ff", "#e9c0ff", "#d489ff", "#c55bff"]);
 
     var arc = d3
         .arc()
@@ -32,9 +32,8 @@ d3.json("sales_by_platform.json", (dr) => {
         .value(function (d) {
             return +d.profit;
         });
-
-    var svg = d3
-        .select("body")
+        
+    var svg = d3.select("#pie_chart")
         .append("svg")
         .attr("width", width)
         .attr("height", height)
@@ -52,6 +51,26 @@ d3.json("sales_by_platform.json", (dr) => {
         .attr("d", arc)
         .style("fill", function (d) {
             return color(+d.value);
+        })
+        .on('mouseenter', function (d, i) {
+            let percentage = (d.endAngle - d.startAngle) / (2 * Math.PI) * 100
+            let percent = Math.round(percentage * 10) / 10
+            d3.select(this).attr('opacity', .5)
+            d3.select("#tooltip")
+                .style("left", d3.event.pageX + "px")
+                .style("top", d3.event.pageY + "px")
+                .style("opacity", 1)
+                // .select("#value")
+                .text(percent + "%");
+            console.log(percentage)
+        })
+        .on('mousemove', function (d, i) {
+            d3.select("#tooltip")
+                .style("left", d3.event.pageX + "px")
+                .style("top", d3.event.pageY + "px")
+        })
+        .on('mouseleave', function (d, i) {
+            d3.select(this).attr('opacity', 1)
         });
 
     g.append("text")

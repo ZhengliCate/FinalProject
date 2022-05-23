@@ -8,10 +8,16 @@
 
   </head>
   <body>
-    <main><h1>Pie Chart</h1>
-      <div id="my_dataviz"></div>
+    <main>
+      <h1>Percent of Games per Console</h1>
+      <div id="pie_chart"></div>
+      <div id="tooltip"></div>
       <script src="pie_chart.js"></script>
-      <h1>Sales per Console over Time</h1>
+      <p>Games are complicated. Having just passed 50 years of existance, 
+        the landscape for video games has been expanding in the most fascinating way.
+      With more and more games coming out with each new Console generation, 
+      it begs the question: has anything changed at all over these past 50 years?</p>
+      <h1>Game Sales per Console over Time</h1>
       <svg id="bar-chart-race">
         <g class="chart-container">
           <text class="chart-title"></text>
@@ -21,11 +27,37 @@
           <text class="current-date"></text>
         </g>
       </svg>
+      <p>When we look at the history of video games, 
+        we often find that like many thing in the computing world, 
+        the sucuess of software is tied heavily with the hardware developers have to work with.
+      Thus, we find that the history of games sales is inherently tied to the history of game consoles, 
+      and there are many events in that history that can examined to know that this is true. 
+      Moments like the Console Wars of the 90's between the Super Nintendo Entertainment System and the Sega Genesis 
+      were instrumental to the growth of sales of both consoles and the games that were developed for them.
+      This was also the case during the explosive launch of Sony's Playstaion, 
+      thanks in part due to it's quality 3D graphics and diverse library of games, 
+      outclassing Nintendo's own 3D console, the N64.
+      Eventually, Nintendo was able to take back it's top spot with the meteoric rise of the Wii, 
+      appealing to more casual audiences and widining the appeal.
+      This led to more innovation once the PS4 and Xbox One launched and included more casual features like online streaming services,
+      leading these two consoles becoming the rivals in the new Console War.
+      
+      So what is the key to the growth of video games? It's competition.</p>
       <script src="racingbarchart.js"></script>
       <h1>Distributions of Games per Genre</h1>
-      <div id="box_plot"></div>
+      <div id="box_plot" ></div>
       <script src="box_plot.js"></script>
-      <p></p>
+      <p>Of course, like the history of most things in our world, 
+        the history of Game Sales can seem extremely magical at times.
+        An example of this can be seen in the relationship between game genre and how it effects their sales, 
+        which is to say there is none. For a vast majority of games, 
+        sales only stay within the 100,000 to million range. Surprisingly, 
+        relatively few games are able to exceed that range an hit the heights of 40 million sales at best, 
+        and the only developers that have a chance of reaching those heights are the triple-A studios who already got there.
+        This often considered the reason why the games industry is so hard to break into, 
+        the standard for success is exceeding difficult to reach. 
+        In a way, the data alone shows how unpredicatble the world of video games can be.
+      </p>
     </main>
   </body>
 </html>

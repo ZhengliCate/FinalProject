@@ -31,7 +31,7 @@ d3.json("games_sales_yearly.json", (dr) => {
   const myChart = new BarChartRace("bar-chart-race")
 
   myChart
-    .setTitle("Bar Chart Race Title")
+    .setTitle("Games Sale Per Console over Time")
     .addDatasets(dataSorted)
     .render();
 })
@@ -91,6 +91,8 @@ function BarChartRace(chartId, extendedSettings) {
         secondValue - firstValue
     );
 
+    var colors = d3.scaleLinear().domain([0,5, 10, 15, 20]) .range(["red", "blue"])
+
     
 
     chartContainer.select(".current-date").text(currentDate);
@@ -128,21 +130,16 @@ function BarChartRace(chartId, extendedSettings) {
       .append("rect")
       .attr("class", "column-rect")
       .attr("width", 0)
-      .attr("height", yAxisScale.step() * (1 - chartSettings.columnPadding));
+      .attr("height", 30);
 
     barGroupsEnter
       .append("text")
       .attr("class", "column-title")
-      .attr("y", (yAxisScale.step() * (1 - chartSettings.columnPadding)) / 2)
-      .attr("x", -titlePadding)
-      .text(({ name }) => name);
+      .attr("y", 15)
+      .attr("x", +titlePadding)
+      .text(({ name }) => name)
+      .attr("fill", "black")
 
-    barGroupsEnter
-      .append("text")
-      .attr("class", "column-value")
-      .attr("y", (yAxisScale.step() * (1 - chartSettings.columnPadding)) / 2)
-      .attr("x", titlePadding)
-      .text(0);
 
     // Update selection
     const barUpdate = barGroupsEnter.merge(barGroups);
@@ -150,7 +147,9 @@ function BarChartRace(chartId, extendedSettings) {
     barUpdate
       .transition(transition)
       .attr("transform", ({ name }) => `translate(0,${yAxisScale(name)})`)
-      .attr("fill", "normal");
+      .attr("fill", function (d, i) {
+        return colors(i)
+      });
 
     barUpdate
       .select(".column-rect")
